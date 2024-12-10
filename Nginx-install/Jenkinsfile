@@ -1,4 +1,18 @@
 pipepile {
     agent any
 
+    stages{
+        stage('Preparando conetenedor Nginx') {
+            steps {
+                sh '''
+                echo "Descargando la imagen de Nginx..."
+                docker pull nginx
+                
+                echo "Iniciando contenedor de Nginx..."
+                docker run -d --name nginx-container -p 8080:80 nginx
+                '''
+            }
+        }
+    }
+
 }
